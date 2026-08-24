@@ -54,7 +54,7 @@ module SEPA
           builder.CdtrAgt do
             builder.FinInstnId do
               if group[:account].bic
-                builder.BIC(group[:account].bic)
+                bic_tag(builder, group[:account].bic, schema_name)
               else
                 builder.Othr do
                   builder.Id('NOTPROVIDED')
@@ -77,9 +77,17 @@ module SEPA
           end
 
           transactions.each do |transaction|
-            build_transaction(builder, transaction)
+            build_transaction(builder, transaction, schema_name)
           end
         end
+      end
+    end
+
+    def bic_tag(builder, bic, schema_name)
+      if schema_name == PAIN_008_001_08
+        builder.BICFI(bic)
+      else
+        builder.BIC(bic)
       end
     end
 
@@ -123,7 +131,7 @@ module SEPA
       end
     end
 
-    def build_transaction(builder, transaction)
+    def build_transaction(builder, transaction, schema_name)
       builder.DrctDbtTxInf do
         builder.PmtId do
           if transaction.instruction.present?
@@ -142,7 +150,7 @@ module SEPA
         builder.DbtrAgt do
           builder.FinInstnId do
             if transaction.bic
-              builder.BIC(transaction.bic)
+              bic_tag(builder, transaction.bic, schema_name)
             else
               builder.Othr do
                 builder.Id('NOTPROVIDED')
