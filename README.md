@@ -1,3 +1,5 @@
+This an adaptation of sepa_king https://github.com/salesking/sepa_king to support PAIN_008_001_08
+
 # Ruby gem for creating SEPA XML files
 
 [![Build Status](https://github.com/salesking/sepa_king/workflows/Test/badge.svg?branch=master)](https://github.com/salesking/sepa_king/actions)
