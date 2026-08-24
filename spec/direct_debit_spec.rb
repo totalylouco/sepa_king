@@ -256,7 +256,7 @@ RSpec.describe SEPA::DirectDebit do
         end
 
         it 'should create valid XML file' do
-          expect(subject).to validate_against('pain.008.001.02.xsd')
+          expect(subject).to validate_against('pain.008.001.08.xsd')
         end
 
         it 'should have creditor identifier' do
@@ -296,7 +296,7 @@ RSpec.describe SEPA::DirectDebit do
         end
 
         it 'should contain <CdtrAgt>' do
-          expect(subject).to have_xml('//Document/CstmrDrctDbtInitn/PmtInf/CdtrAgt/FinInstnId/BIC', 'BANKDEFFXXX')
+          expect(subject).to have_xml('//Document/CstmrDrctDbtInitn/PmtInf/CdtrAgt/FinInstnId/BICFI', 'BANKDEFFXXX')
         end
 
         it 'should contain <CdtrAgt>' do
@@ -324,7 +324,7 @@ RSpec.describe SEPA::DirectDebit do
         end
 
         it 'should contain <DbtrAgt>' do
-          expect(subject).to have_xml('//Document/CstmrDrctDbtInitn/PmtInf/DrctDbtTxInf[1]/DbtrAgt/FinInstnId/BIC', 'SPUEDE2UXXX')
+          expect(subject).to have_xml('//Document/CstmrDrctDbtInitn/PmtInf/DrctDbtTxInf[1]/DbtrAgt/FinInstnId/BICFI', 'SPUEDE2UXXX')
           expect(subject).to have_xml('//Document/CstmrDrctDbtInitn/PmtInf/DrctDbtTxInf[2]/DbtrAgt/FinInstnId/Othr/Id', 'NOTPROVIDED')
         end
 
@@ -516,7 +516,7 @@ RSpec.describe SEPA::DirectDebit do
         end
 
         it 'should create valid XML file' do
-          expect(subject).to validate_against('pain.008.001.02.xsd')
+          expect(subject).to validate_against('pain.008.001.08.xsd')
         end
 
         it 'should contain <InstrId>' do

@@ -1,3 +1,4 @@
+require 'logger'
 require 'active_model'
 require 'bigdecimal'
 require 'nokogiri'
